@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+  <!-- Autor Luis Fernández Vidal -->
+  <body>
+    <script>
+      function intercambioVariables() {
+    // Declaramos las variables numeroA y numeroB fuera del bucle para poder acceder a ellas globalmente
+    let numeroA, numeroB, cambioValor;
+
+    // Iniciamos un bucle do...while para pedir al usuario que ingrese valores válidos
+    do {
+        // Solicitamos al usuario que ingrese un valor para numeroA, eliminamos espacios y convertimos a tipo float
+        numeroA =parseFloat(prompt("Dale un valor a la variable A").trim());
+
+        // Solicitamos al usuario que ingrese un valor para numeroB, eliminamos espacios y convertimos a tipo float
+        numeroB = parseFloat(prompt("Dale un valor a la variable B").trim());
+
+        // Verificamos que ambos inputs no estén vacíos y contengan valores numéricos válidos
+        if (numeroA === "" || numeroB === "" || isNaN(numeroA) || isNaN(numeroB)) {
+            // Mostramos una alerta al usuario indicando que debe ingresar números válidos
+            alert("Por favor, ingrese números válidos.");
+        }
+    // Repetimos el bucle si la entrada es vacía o alguno de los valores no es un número
+    } while (isNaN(numeroA) || isNaN(numeroB)); //TODO Edge cases
+
+    //Mostramos valor inicial de las variables A y B
+    document.write("El valor de la Variable A es " + numeroA + "<br><br>");
+    document.write("El valor de la Variable B es " + numeroB + "<br><br>");
+
+    // Comprobamos si el valor de numeroB es mayor o igual al valor de numeroA
+    if (numeroB >= numeroA) {
+        // Creamos una variable temporal cambioValor para almacenar el valor de numeroA
+        cambioValor = numeroA;
+        // Asignamos el valor de numeroB a numeroA (intercambio de valores)
+        numeroA = numeroB;
+        // Asignamos el valor almacenado en cambioValor a numeroB
+        numeroB = cambioValor;
+    }
+
+    // Mostramos en el documento los resultados finales después de realizar el intercambio (si fue necesario)
+    document.write(
+        "Si el valor de la variable B es mayor o igual a la variable A, intercambiaremos sus valores.<br><br>"
+    );
+    document.write(
+        "Por lo tanto el valor final de la Variable A es " +
+        numeroA +
+        " y el valor de la Variable B es " +
+        numeroB
+    );
+}
+
+
+      // Llamamos a la función para que ejecute
+      // intercambioVariables();
+
+      function incrementoRango() {
+        do {
+          //Pedimos al usuario que nos indique el valor de las 3 variables y los casteamos a float
+          inicio = parseFloat(prompt("¿Con qué número quieres empezar?"));
+          final = parseFloat(prompt("¿Con qué número quieres terminar?"));
+          incremento = parseFloat(
+            prompt("¿Qué valor quieres usar como incremento?")
+          );
+
+          // Validamos que el casting haya funcionado y no nos devuelva un Not a Number
+          //Damos dos tipos de alert si hay error para informar al usuario de por qué su input no es válido
+          if (isNaN(inicio) || isNaN(final) || isNaN(incremento)) {
+            alert("Por favor, ingrese números válidos.");
+          } else if (final < inicio) {
+            alert("El número final debe ser mayor que el inicial.");
+          }
+          //La condicion while hace que si alguno de los inputs no es válido, se ejecute de nuevo la petición de entrada de datos
+        } while (
+          isNaN(inicio) ||
+          isNaN(final) ||
+          isNaN(incremento) ||
+          final < inicio
+        );
+        //Mostramos los resultados con un bucle for, incrementabdo el valor inicio hasta que llegue al valor final sumando el valor incremento en cada iteración
+        document.write("Mostrando resultados con bucle for<br>");
+        for (let i = inicio; i <= final; i += incremento) {
+          //Mostramos en pantalla el valor de i en cada iteración
+          document.write(i + "<br>");
+        }
+
+        document.write("<br><br><br>");
+        //Mostramos los resultados con un bucle while,incrementabdo el valor inicio hasta que llegue al valor final sumando el valor incremento en cada iteración
+        document.write("Mostrando resultados con bucle while<br>");
+        while (inicio <= final) {
+          document.write(inicio + "<br>");
+          inicio += incremento;
+        }
+      }
+      //Llamamos a la funcion
+      //incrementoRango();
+
+      function miniCalculadora() {
+        //Declaramos las variables para que sean accesibles por las dos funciones
+        let x, y, operador, solucion;
+        //Pedimos al usuario que nos indique el valor de las 3 variables: X, Y y el operador del cálculo, repetimos con while para comprobar que los valores introducidos son correctos
+        do {
+          x = parseFloat(prompt("Ingresa un valor para X"));
+          operador = prompt("Ingrese un operador matematico para realizar la operación: +, -, /, *");
+          y = parseFloat(prompt("Ingrese un valor para Y"));
+
+          //Si alguno de los valores no es correcto o el operador no es válido, pedimos que lo vuelva a introducir
+          if (isNaN(x) || isNaN(y)) {
+            alert("Por favor, ingrese valores numéricos válidos");
+          } else if (!['+', '-', '*', '/'].includes(operador)) {
+            alert("Por favor, ingrese un operador válido (+, -, *, /)");
+          }
+        } while (isNaN(x) || isNaN(y) || !(['+', '-', '*', '/'].includes(operador)));
+
+
+        //Salida de resultados usando un switch para acada caso
+        try {
+          switch (operador) {
+              case "+":
+                  solucion = x + y;
+                  break;
+              case "-":
+                  solucion = x - y;
+                  break;  // Faltaba este break
+              case "*":
+                  solucion = x * y;
+                  break;
+              case "/":
+                  if (y === 0) {
+                      throw new Error("No se puede dividir por 0");
+                  }
+                  solucion = x / y;
+                  break;
+              default:
+                  throw new Error(`Operador no válido: ${operador}`);
+          }
+
+        // Mostrar resultado con la cuenta completa
+        document.write(`El resultado de ${x} ${operador} ${y} = ${solucion}`);
+      } catch (error) {
+        alert(error.message);
+      }
+    }  
+    //Llamamamos a la función
+    miniCalculadora();
+    </script>
+  </body>
+</html>

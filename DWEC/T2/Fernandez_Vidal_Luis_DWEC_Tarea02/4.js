@@ -13,9 +13,10 @@ function calcularFechaStarWars() {
     }
 
     // Pedimos al usuario que introduzca una fecha
+    // TODO SALIR SI CANCELA
     let fechaUsuario;
     do {
-        alert("Vamos a calcular el tiempo desde el estreno de Star Wars a la fecha que elijas.");
+        alert("Te veo melancólico, a ver si te animas calculando el tiempo desde el estreno de Star Wars a la fecha que elijas. Por favor usa este formato dd//mm//aaaa");
         dia = parseInt(prompt("Dime qué día del mes (1-31):"));
         mes = parseInt(prompt("Dime qué mes del año (1-12):"));
         anyo = parseInt(prompt("Dime qué año:"));
@@ -23,7 +24,7 @@ function calcularFechaStarWars() {
         // Creamos la fecha introducida por el usuario
         fechaUsuario = new Date(anyo, mes - 1, dia);
 
-        // Validaciones
+        // Validaciones de entrada de datos del usuario
         if (isNaN(dia) || isNaN(mes) || isNaN(anyo) ||
             dia < 1 || dia > 31 ||
             mes < 1 || mes > 12) {
@@ -44,11 +45,12 @@ function calcularFechaStarWars() {
     // Convertimos a días, años y semanas
     let diasTranscurridos = Math.floor(milisegundosTranscurridos / (1000 * 60 * 60 * 24));
     let anyosTranscurridos = Math.floor(diasTranscurridos / 365.25);
-    let semanasTranscurridas = diasTranscurridos / 7;
+    let semanasTranscurridas = Math.floor(diasTranscurridos / 7);
 
     // Mostramos los resultados
     document.write(`<p style="font-size: 30px;">Han pasado ${diasTranscurridos} días desde el estreno de Star Wars.</p>`);
-    document.write(`<p style="font-size: 30px;">Han pasado ${Math.floor(semanasTranscurridas)} semanas desde el estreno de Star Wars.</p>`);
+    document.write(`<p style="font-size: 30px;">Han pasado ${semanasTranscurridas} semanas desde el estreno de Star Wars.</p>`);
     document.write(`<p style="font-size: 30px;">Han pasado ${anyosTranscurridos} años desde el estreno de Star Wars.</p>`);
+    document.write(`<p style="font-size: 30px;">Sí, ya ha pasado tanto tiempo, a lo mejor no era la mejor forma de animarte.</p>`);
     document.write(`<img src="img/star.jpeg" style="width: 25%;">`);
 }

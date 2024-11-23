@@ -2,26 +2,24 @@ function cifrarMensaje() {
 
   let mensaje, clave;
 
-  // Pedir mensaje y clave, mostrando alertas si están vacíos
-
-
+  // Pedir mensaje y clave, mostrando alertas si están vacíos y salir si cancela
   do {
     mensaje = prompt("Introduzca el mensaje a cifrar:");
     if (mensaje === null) {
       alert("Operación cancelada");
       return; // Salir de la función si se cancela
     }
-    if (!mensaje) alert("El mensaje no puede estar vacío.");
+    if (!mensaje) alert("El mensaje no puede estar vacío."); //Informar al usuario que el emnsaje no puede estar vacio
 
     clave = prompt("Elija la palabra clave para cifrar el mensaje:");
     if (clave === null) {
       alert("Operación cancelada");
       return; // Salir de la función si se cancela
     }
-    if (!clave) alert("La clave no puede estar vacía.");
+    if (!clave) alert("La clave no puede estar vacía."); //Informar al usuario que la clave no puede estar vacia
   } while (!mensaje || !clave);
 
-  // Convertir clave, clave repetida y mensaje cifrado a mayúsculas
+  // Convertir clave a mayúsculas y declarar claveRepetida y mensajeCifrado como string vacions para luego apender
   clave = clave.toUpperCase();
   let claveRepetida = ""
   let mensajeCifrado = ""
@@ -36,6 +34,7 @@ function cifrarMensaje() {
     }
   }
 
+  //TODO REVISAR CIFRADO https://educacionadistancia.juntadeandalucia.es/formacionprofesional/mod/forum/discuss.php?d=10662
   // Cifrar el mensaje pasando a ASCII
   // Recorremos con bucle for mensaje y clave repetida
 for (let i = 0; i < mensaje.length; i++) {
@@ -60,7 +59,7 @@ console.log("Mensaje cifrado:", mensajeCifrado);
 
 
 
-  // Mostrar resultados
+  // Mostrar resultados con Template Strings
   
   document.write(`
     <p style="font-size: 20px;">Mensaje: ${mensaje}</p>

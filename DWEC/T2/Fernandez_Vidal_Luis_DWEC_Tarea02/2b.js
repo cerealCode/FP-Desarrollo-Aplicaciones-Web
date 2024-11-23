@@ -3,6 +3,8 @@ function cifrarMensaje() {
   let mensaje, clave;
 
   // Pedir mensaje y clave, mostrando alertas si están vacíos
+
+
   do {
     mensaje = prompt("Introduzca el mensaje a cifrar:");
     if (mensaje === null) {
@@ -35,23 +37,28 @@ function cifrarMensaje() {
   }
 
   // Cifrar el mensaje pasando a ASCII
-  // TODO Review logic for caps and calculations
-  for (let i = 0; i < mensaje.length; i++) {
+  // Recorremos con bucle for mensaje y clave repetida
+for (let i = 0; i < mensaje.length; i++) {
+    // Obtener códigos ASCII del carácter del mensaje y de la clave repetida
     let codigoMensaje = mensaje.charCodeAt(i);
     let codigoClave = claveRepetida.charCodeAt(i);
 
     // Solo cifrar letras
     if (codigoMensaje >= 65 && codigoMensaje <= 90) {
-      // Mayúsculas
-      mensajeCifrado += String.fromCharCode(((codigoMensaje - 65 + codigoClave - 65)) + 65);
+        // Mayúsculas
+        mensajeCifrado += String.fromCharCode(((codigoMensaje - 65 + (codigoClave - 65)) % 26) + 65);
     } else if (codigoMensaje >= 97 && codigoMensaje <= 122) {
-      // Minúsculas
-      mensajeCifrado += String.fromCharCode(((codigoMensaje - 97 + codigoClave - 65)) + 97);
+        // Minúsculas
+        mensajeCifrado += String.fromCharCode(((codigoMensaje - 97 + (codigoClave - 65)) % 26) + 97);
     } else {
-      // Caracteres que no sean letras permanecen sin cambios
-      mensajeCifrado += mensaje.charAt(i);
+        // Otros caracteres permanecen iguales
+        mensajeCifrado += mensaje.charAt(i);
     }
-  }
+}
+
+console.log("Mensaje cifrado:", mensajeCifrado);
+
+
 
   // Mostrar resultados
   

@@ -32,15 +32,21 @@ public class Controlador {
         //          Creación de objetos
         //----------------------------------------------
         // Instanciar los 3 aeropuertos: Barcelona, Madrid, Granada.
-        Aeropuerto barcelona = new Aeropuerto("El Prat", "Barcelona");
-        Aeropuerto madrid = new Aeropuerto("Barajas", "Madrid");
-        Aeropuerto granada = new Aeropuerto("Federico García Lorca", "Granada");
+        System.out.println("------------------------------------------------");
+        System.out.println("-----------Creando Aeropuertos------------");
+        System.out.println("------------------------------------------------");
+        
+            // Intento de creacion aeropuertos
+        Aeropuerto areropuertoBarcelona = new Aeropuerto("El Prat", "Barcelona");
+        Aeropuerto aeropuertoMadrid = new Aeropuerto("Barajas", "Madrid");
+        Aeropuerto aeropuertoGranada = new Aeropuerto("Federico García Lorca", "Granada");
+        System.out.println("***Aeropuertos creados***");
 
         // Instanciar las 3 aeronaves: avion1, avion2, Avion3.
 
         Aeronave avion1 = new Aeronave();
         Aeronave avion2 = new Aeronave("EC-123", "Boing747");
-        Aeronave avion3 = new Aeronave("EC-456", "Boing787", madrid);
+        Aeronave avion3 = new Aeronave("EC-456", "Boing787", aeropuertoMadrid);
         
 
         //----------------------------------------------
@@ -94,11 +100,11 @@ public class Controlador {
         System.out.printf("El rumbo del avión 2 es:%d %n%n", avion2.getRumbo());
 
         //Avion3 aterriza en el aeropuerto de Barcelona despues de 75 minutos
-        avion3.aterrizar(barcelona, 75);
-        System.out.printf("El Avión  ha aterrizado%n%n");
+        avion3.aterrizar(areropuertoBarcelona, 75);
+        System.out.printf("El Avión 3  ha aterrizado%n%n");
 
         //Avion2 aterriza en el aeropuerto de Madrid despues de 80 minutos
-        avion2.aterrizar(madrid, 80);
+        avion2.aterrizar(aeropuertoMadrid, 80);
         System.out.printf("El Avión 2 ha aterrizado en Madrid %n%n");
 
         //Comprobar si avion2 está volando
@@ -122,7 +128,7 @@ public class Controlador {
         System.out.println("El avión ha despegado.");
 
         //Avion1 aterriza en el aeropuerto de Granada despues de 260 minutos
-        avion1.aterrizar(granada,260);
+        avion1.aterrizar(aeropuertoGranada,260);
         System.out.printf("El Avión 1 ha aterrizado en Granada %n%n");
         
         //Modificar velocidad del Avion3 a 950km/h y mostrarlo
@@ -134,9 +140,9 @@ public class Controlador {
                 
                 
         //Mostrar el nombre del aeropuerto de Madrid
-        System.out.printf("El aeropuerto de Madrid se llama: %s %n", madrid.getNombre());
+        System.out.printf("El aeropuerto de Madrid se llama: %s %n", aeropuertoMadrid.getNombre());
         //Mostrar el número de aeronaves en este momento en el aeropuerto de Granada
-        System.out.printf("El número de aviones en el aeropuerto de Granada es de %d %n", granada.getNumeroAeronaves());
+        System.out.printf("El número de aviones en el aeropuerto de Granada es de %d %n", aeropuertoGranada.getNumeroAeronaves());
         //Mostrar toda la información del avion1
         System.out.printf("La información del Avión 1 es: %s %n ", avion1);
         

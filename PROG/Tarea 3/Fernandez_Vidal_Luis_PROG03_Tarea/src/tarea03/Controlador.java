@@ -33,30 +33,37 @@ public class Controlador {
         //----------------------------------------------
         // Instanciar los 3 aeropuertos: Barcelona, Madrid, Granada.
         System.out.println("------------------------------------------------");
-        System.out.println("-----------Creando Aeropuertos------------");
-        System.out.println("------------------------------------------------");
+        System.out.println("-----------Creando Aeropuertos------------\n"); 
+       
         
             // Intento de creacion aeropuertos
         Aeropuerto areropuertoBarcelona = new Aeropuerto("El Prat", "Barcelona");
         Aeropuerto aeropuertoMadrid = new Aeropuerto("Barajas", "Madrid");
         Aeropuerto aeropuertoGranada = new Aeropuerto("Federico García Lorca", "Granada");
-        System.out.println("***Aeropuertos creados***");
+        System.out.println("***Aeropuertos creados***\n");
 
         // Instanciar las 3 aeronaves: avion1, avion2, Avion3.
+        System.out.println("------------------------------------------------");
+        System.out.println("-----------Creando Aeronaves------------");
+        System.out.println("------------------------------------------------\n");
 
         Aeronave avion1 = new Aeronave();
         Aeronave avion2 = new Aeronave("EC-123", "Boing747");
         Aeronave avion3 = new Aeronave("EC-456", "Boing787", aeropuertoMadrid);
+         System.out.println("***Aeronaves Creadas***\n");
         
 
         //----------------------------------------------
         //   Inicio de la secuencia de instrucciones
         //----------------------------------------------
+        System.out.println("------------------------------------------------");
+        System.out.println("-----------Secuencia instrucciones------------");
+        System.out.println("------------------------------------------------\n");
         //Avion1 despega con velocidad 1500, altitud 1750, rumbo 50 y fechaHora actual
         try {
             // Intento de despegue
             avion1.despegar(1500, 1750, 50, fechaHoraDespegue);
-            System.out.println("El Avión 1 ha despegado.");
+            System.out.println("El Avión 1 ha despegado.\n");
         } catch (IllegalStateException e) {
             System.out.println("Error: El Avión 1 ya ha despegado previamente.");
         } catch (IllegalArgumentException e) {
@@ -67,7 +74,7 @@ public class Controlador {
         try {
             // Intento de despegue
             avion2.despegar(1500, 1850, 75, fechaHoraDespegue);
-            System.out.println("El Avión 2 ha despegado.");
+            System.out.println("El Avión 2 ha despegado.\n");
         } catch (IllegalStateException e) {
             System.out.println("Error: El Avión 2 ya está volando.");
         } catch (IllegalArgumentException e) {
@@ -78,7 +85,7 @@ public class Controlador {
         try {
             // Intento de despegue
             avion3.despegar(1500, 1000, 180, fechaHoraDespegue);
-            System.out.println("El Avión 3 ha despegado.");
+            System.out.println("El Avión 3 ha despegado.\n");
         } catch (IllegalStateException e) {
             System.out.println("Error: El Avión 3 ya está volando.");
         } catch (IllegalArgumentException e) {
@@ -87,21 +94,21 @@ public class Controlador {
 
         //Comprobar si avion1 está volando
         avion1.isVolando();
-        System.out.printf("¿El Avión 1 está volando? %b %n", avion1.isVolando());
+        System.out.printf("¿El Avión 1 está volando? %b %n ", avion1.isVolando());
 
         //Mostrar la matrícula del avion2
-        System.out.printf("Matrícula del Avión 2: %s %n", avion2.getMatricula());
+        System.out.printf("Matrícula del Avión 2: %s %n ", avion2.getMatricula());
 
         //Mostrar modelo del Avion3
-        System.out.printf("Modelo del Avión 3: %s %n", avion3.getModelo());
+        System.out.printf("Modelo del Avión 3: %s %n ", avion3.getModelo());
 
         //Modificar rumbo del avion2 a 90º y mostrarlo
         avion2.setRumbo(90);
-        System.out.printf("El rumbo del avión 2 es:%d %n%n", avion2.getRumbo());
+        System.out.printf("El rumbo del avión 2 es:%d %n%n ", avion2.getRumbo());
 
         //Avion3 aterriza en el aeropuerto de Barcelona despues de 75 minutos
         avion3.aterrizar(areropuertoBarcelona, 75);
-        System.out.printf("El Avión 3  ha aterrizado%n%n");
+        System.out.printf("El Avión 3  ha aterrizado en el aeropuerto de Barcelona %n%n");
 
         //Avion2 aterriza en el aeropuerto de Madrid despues de 80 minutos
         avion2.aterrizar(aeropuertoMadrid, 80);
@@ -125,7 +132,7 @@ public class Controlador {
 
         //Avion3 despega con velocidad 860, altitud 1420 y rumbo 270
         avion3.despegar(860, 1420, 270, fechaHoraDespegue);
-        System.out.println("El avión ha despegado.");
+        System.out.println("El avión 3 ha despegado.%n");
 
         //Avion1 aterriza en el aeropuerto de Granada despues de 260 minutos
         avion1.aterrizar(aeropuertoGranada,260);
@@ -133,7 +140,7 @@ public class Controlador {
         
         //Modificar velocidad del Avion3 a 950km/h y mostrarlo
         avion3.setVelocidad(950);
-        System.out.printf("");
+        System.out.printf("La velocidad del Avión 3 es de %d", avion3.getVelocidad());
                 
                 
                 
@@ -144,12 +151,12 @@ public class Controlador {
         //Mostrar el número de aeronaves en este momento en el aeropuerto de Granada
         System.out.printf("El número de aviones en el aeropuerto de Granada es de %d %n", aeropuertoGranada.getNumeroAeronaves());
         //Mostrar toda la información del avion1
-        System.out.printf("La información del Avión 1 es: %s %n ", avion1);
+        System.out.printf("La información del Avión 1 es: %s %n ", avion1.toString());
         
         //Mostrar toda la información del avion2
-        System.out.printf("La información del Avión 2 es: %s %n ", avion2);
+        System.out.printf("La información del Avión 2 es: %s %n ", avion2.toString());
         //Mostrar toda la información del Avion3
-        System.out.printf("La información del Avión 3 es: %s %n ", avion3);
+        System.out.printf("La información del Avión 3 es: %s %n ", avion3.toString());
         
         
         

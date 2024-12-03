@@ -18,8 +18,26 @@ function calcularFechaStarWars() {
     do {
         alert("Te veo melancólico, a ver si te animas calculando el tiempo desde el estreno de Star Wars a la fecha que elijas. Por favor usa este formato dd//mm//aaaa");
         dia = parseInt(prompt("Dime qué día del mes (1-31):"));
+        if (dia === null) {
+            alert("Operación cancelada");
+            // window.location.href: Directly redirects to a specific index page
+      // history.back(): Goes back to the previous page in the browser history
+      // window.history.go(-1): Similar to history.back(), goes back one page; // Salir de la función si se cancela
+        }
         mes = parseInt(prompt("Dime qué mes del año (1-12):"));
+        if (mes === null) {
+            alert("Operación cancelada");
+            // window.location.href: Directly redirects to a specific index page
+      // history.back(): Goes back to the previous page in the browser history
+      // window.history.go(-1): Similar to history.back(), goes back one page; // Salir de la función si se cancela
+        }
         anyo = parseInt(prompt("Dime qué año:"));
+        if (anyo === null) {
+            alert("Operación cancelada");
+            // window.location.href: Directly redirects to a specific index page
+      // history.back(): Goes back to the previous page in the browser history
+      // window.history.go(-1): Similar to history.back(), goes back one page; // Salir de la función si se cancela
+          }
 
         // Creamos la fecha introducida por el usuario
         fechaUsuario = new Date(anyo, mes - 1, dia);
@@ -47,7 +65,7 @@ function calcularFechaStarWars() {
     let anyosTranscurridos = Math.floor(diasTranscurridos / 365.25);
     let semanasTranscurridas = Math.floor(diasTranscurridos / 7);
 
-    // Mostramos los resultados
+    // Mostramos los resultados con Template String
     document.write(`<p style="font-size: 30px;">Han pasado ${diasTranscurridos} días desde el estreno de Star Wars.</p>`);
     document.write(`<p style="font-size: 30px;">Han pasado ${semanasTranscurridas} semanas desde el estreno de Star Wars.</p>`);
     document.write(`<p style="font-size: 30px;">Han pasado ${anyosTranscurridos} años desde el estreno de Star Wars.</p>`);

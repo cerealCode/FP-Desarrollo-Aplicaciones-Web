@@ -1,66 +1,72 @@
 function cifrarMensaje() {
-
   let mensaje, clave;
 
-  // Pedir mensaje y clave, mostrando alertas si están vacíos y salir si cancela
   do {
     mensaje = prompt("Introduzca el mensaje a cifrar:");
     if (mensaje === null) {
-      alert("Operación cancelada");
-      return; // Salir de la función si se cancela
+      // window.location.href: Directly redirects to a specific index page
+      // history.back(): Goes back to the previous page in the browser history
+      // window.history.go(-1): Similar to history.back(), goes back one page
+    if (!mensaje) alert("El mensaje no puede estar vacío.");
     }
-    if (!mensaje) alert("El mensaje no puede estar vacío."); //Informar al usuario que el emnsaje no puede estar vacio
+
+    
 
     clave = prompt("Elija la palabra clave para cifrar el mensaje:");
     if (clave === null) {
       alert("Operación cancelada");
-      return; // Salir de la función si se cancela
+      // window.location.href: Directly redirects to a specific index page
+      // history.back(): Goes back to the previous page in the browser history
+      // window.history.go(-1): Similar to history.back(), goes back one page;
     }
-    if (!clave) alert("La clave no puede estar vacía."); //Informar al usuario que la clave no puede estar vacia
+    if (!clave) alert("La clave no puede estar vacía.");
   } while (!mensaje || !clave);
 
-  // Convertir clave a mayúsculas y declarar claveRepetida y mensajeCifrado como string vacions para luego apender
+  //Pasamos la variable clave a mayusculas para que el cifrado sea consistente
   clave = clave.toUpperCase();
-  let claveRepetida = ""
-  let mensajeCifrado = ""
+  //Declaramos las variables como Strings vacias para luego apender
+  let claveRepetida = "";
+  let mensajeCifrado = "";
 
   // Generar clave repetida
+  //Empezamos j como index 0
   let j = 0;
+  //Recorremos la string clave con un for y apendemos el caracter en el index j 
   for (let i = 0; i < mensaje.length; i++) {
     claveRepetida += clave.charAt(j);
-    j++;
-    if (j >= clave.length) {
-      j = 0;
-    }
+    //Cuando j supera la longitud de la clave, j se resetea a 0 usando modulus para que j = 0
+    j = (j + 1) % clave.length;
   }
 
-  //TODO REVISAR CIFRADO https://educacionadistancia.juntadeandalucia.es/formacionprofesional/mod/forum/discuss.php?d=10662
-  // Cifrar el mensaje pasando a ASCII
-  // Recorremos con bucle for mensaje y clave repetida
+  // Cifrar el mensaje paso a paso
 for (let i = 0; i < mensaje.length; i++) {
-    // Obtener códigos ASCII del carácter del mensaje y de la clave repetida
-    let codigoMensaje = mensaje.charCodeAt(i);
-    let codigoClave = claveRepetida.charCodeAt(i);
-
-    // Solo cifrar letras
-    if (codigoMensaje >= 65 && codigoMensaje <= 90) {
-        // Mayúsculas
-        mensajeCifrado += String.fromCharCode(((codigoMensaje - 65 + (codigoClave - 65)) % 26) + 65);
-    } else if (codigoMensaje >= 97 && codigoMensaje <= 122) {
-        // Minúsculas
-        mensajeCifrado += String.fromCharCode(((codigoMensaje - 97 + (codigoClave - 65)) % 26) + 97);
-    } else {
-        // Otros caracteres permanecen iguales
-        mensajeCifrado += mensaje.charAt(i);
-    }
-}
-
-console.log("Mensaje cifrado:", mensajeCifrado);
-
-
-
-  // Mostrar resultados con Template Strings
+  // Convertir carácter del mensaje a código ASCII
+  let codigoMensaje = mensaje.charCodeAt(i);
   
+  // Convertir carácter de clave repetida a código ASCII
+  let codigoClave = claveRepetida.charCodeAt(i);
+ 
+  // Filtrar solo caracteres alfabéticos (mayúsculas y minúsculas)
+  if ((codigoMensaje >= 65 && codigoMensaje <= 90) || 
+      (codigoMensaje >= 97 && codigoMensaje <= 122)) {
+    
+    // Determinar base ASCII según sea mayúscula o minúscula
+    let base = codigoMensaje >= 65 && codigoMensaje <= 90 ? 65 : 97;
+    
+    // Aplicar fórmula de cifrado explicada en el ejercicio
+    let nuevoCaracter = String.fromCharCode(
+      ((codigoMensaje - base + codigoClave - base) % 26) + base
+    );
+    
+    // Añadir carácter cifrado
+    mensajeCifrado += nuevoCaracter;
+  } else {
+    // Mantener caracteres no alfabéticos sin cambios
+    mensajeCifrado += mensaje.charAt(i);
+  }
+ }
+
+  // Mostrar resultados
   document.write(`
     <p style="font-size: 20px;">Mensaje: ${mensaje}</p>
     <p style="font-size: 20px;">Clave: ${clave}</p>
@@ -68,5 +74,4 @@ console.log("Mensaje cifrado:", mensajeCifrado);
     <p style="font-size: 20px;">Mensaje Encriptado: ${mensajeCifrado}</p>
   `);
   document.write(`<img src="img/carmen.webp" style="width: 25%;">`);
-
 }

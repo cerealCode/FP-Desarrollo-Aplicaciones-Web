@@ -9,17 +9,23 @@ function multiplicarChar() {
       stringOriginal = prompt("Introduce una frase:");
       if (stringOriginal === null) {
         alert("Operación cancelada");
-        return; // Salir de la función si se cancela
+        // window.location.href: Directly redirects to a specific index page
+      // history.back(): Goes back to the previous page in the browser history
+      // window.history.go(-1): Similar to history.back(), goes back one page; // Salir de la función si se cancela
       }
       caracterARepetir = prompt("¿Qué caracter quieres repetir?");
       if (caracterARepetir === null) {
         alert("Operación cancelada");
-        return; // Salir de la función si se cancela
+        // window.location.href: Directly redirects to a specific index page
+      // history.back(): Goes back to the previous page in the browser history
+      // window.history.go(-1): Similar to history.back(), goes back one page; // Salir de la función si se cancela
       }
-      numeroRepeticiones = parseInt(prompt("¿Cuántas veces quieres repetirlo?"), 10);
+      numeroRepeticiones = parseInt(prompt("¿Cuántas veces quieres repetirlo?"));
       if (numeroRepeticiones === null) {
         alert("Operación cancelada");
-        return; // Salir de la función si se cancela
+        // window.location.href: Directly redirects to a specific index page
+      // history.back(): Goes back to the previous page in the browser history
+      // window.history.go(-1): Similar to history.back(), goes back one page; // Salir de la función si se cancela
       }
   
       //Mensajes de alerta si los datos no cumplen las validaciones
@@ -43,21 +49,21 @@ function multiplicarChar() {
   
     // Construcción del resultado
     let resultado = "";
-  
+
+    //Con un bucle for recorremos el String original
     for (let i = 0; i < stringOriginal.length; i++) {
       // Comprobamos si el carácter actual coincide con el carácter a repetir
       if (stringOriginal.charAt(i) === caracterARepetir) {
-        // Si numeroRepeticiones es 0, omitimos el carácter que desaparecerá de la cadena
+        // Si numeroRepeticiones es 0, omitimos el carácter que desaparecerá de la String
         if (numeroRepeticiones === 0) {
           continue;
         }
-        // Repetimos el carácter el número de veces especificado con un bucle for
+        // Repetimos el carácter el número de veces especificado con un bucle for y lo apendemos a la variable resultado
         for (let j = 0; j < numeroRepeticiones; j++) {
           resultado += caracterARepetir;
         }
         //Si el caracter actual no coincide con el caracter a repetir simplemente lo apendemos a la string
       } else {
-        // Agregamos el carácter actual si no coincide con caracterARepetir
         resultado += stringOriginal.charAt(i);
       }
     }

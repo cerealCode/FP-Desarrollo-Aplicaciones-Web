@@ -3,6 +3,13 @@ function calculoTetraedro() {
     //Pedimos al usuario la longitud del lado
     do { 
      lado = parseFloat(prompt("Dime la longitud del lado del tetraedro"));
+     if (lado === null) {
+        alert("Operación cancelada");
+        // window.location.href: Directly redirects to a specific index page
+      // history.back(): Goes back to the previous page in the browser history
+      // window.history.go(-1): Similar to history.back(), goes back one page; // Salir de la función si se cancela
+      }
+      if (isNaN(lado)) alert("La longitud del lado debe ser un número")
     } while(isNaN(lado))
     
 

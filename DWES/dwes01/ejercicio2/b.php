@@ -8,7 +8,7 @@ require_once 'a.php';
  */
 function filtrarLibros(?int $minCopias = null, ?array $generos = []): array {
     $datos = []; // Array donde se cargarán los datos de los archivos
-    // Cargar datos de ambos CSV
+    // Cargar datos de ambos CSV 
     cargarCSV('datos1.csv', $datos);
     cargarCSV('datos2.csv', $datos);
     
@@ -22,7 +22,7 @@ function filtrarLibros(?int $minCopias = null, ?array $generos = []): array {
             }
         }
         
-        // Filtrar por géneros
+        // Filtrar por géneros 
         if (!empty($generos)) {
             $generoLibro = $libro['Género'];           
             return in_array($generoLibro, $generos);

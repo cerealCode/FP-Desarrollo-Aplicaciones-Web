@@ -49,6 +49,14 @@ if (!isset($datos)) {
             gap: 5px;
         }
 
+        .errores {
+            background-color: #ffdddd;
+            border: 1px solid #ff0000;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+
         .instrucciones {
             background-color: #f8f9fa;
             padding: 15px;
@@ -107,18 +115,19 @@ if (!isset($datos)) {
 <body>
     <h1>Buscador de Libros</h1>
 
-    <div class="instructions">
+    <div class="instrucciones">
         <h2>Instrucciones de uso</h2>
         <p>Este formulario permite filtrar libros en nuestra tabla según los siguientes criterios:</p>
         <ul>
-            <li><strong>Copias mínimas vendidas:</strong> Introduce un número para filtrar libros que hayan vendido al menos esa cantidad de copias.</li>
+            <li><strong>Copias mínimas vendidas:</strong> Introduce un número para filtrar libros que hayan vendido al
+                menos esa cantidad de copias.</li>
             <li><strong>Géneros:</strong> Selecciona uno o más géneros para filtrar los libros.</li>
 
         </ul>
     </div>
 
-    <form action="datos.php" method="POST">
-        <div class="form-group">
+    <form action="datos.php" method="POST"> <!--TODO: KEEP CHECKBOXES SELECTION AND BE ABLE TO REFILTER-->
+        <div class="form-group"> 
             <label for="copias">Copias mínimas vendidas:</label>
             <input type="text" id="copias" name="copias" placeholder="Ej: 1000000">
         </div>
@@ -127,28 +136,20 @@ if (!isset($datos)) {
             <label>Géneros (selección múltiple):</label>
             <div class="checkbox-group">
                 <div class="checkbox-item">
-                    <input type="checkbox" id="fantasia" name="generos[]" value="fantasia">
+                    <input type="checkbox" id="fantasia" name="generos[]" value="Fantasía">
                     <label for="fantasia">Fantasía</label>
                 </div>
                 <div class="checkbox-item">
-                    <input type="checkbox" id="ciencia_ficcion" name="generos[]" value="ciencia_ficcion">
+                    <input type="checkbox" id="ciencia_ficcion" name="generos[]" value="Ciencia Ficción">
                     <label for="ciencia_ficcion">Ciencia Ficción</label>
                 </div>
                 <div class="checkbox-item">
-                    <input type="checkbox" id="misterio" name="generos[]" value="misterio">
+                    <input type="checkbox" id="misterio" name="generos[]" value="Misterio">
                     <label for="misterio">Misterio</label>
                 </div>
                 <div class="checkbox-item">
-                    <input type="checkbox" id="terror" name="generos[]" value="terror">
+                    <input type="checkbox" id="terror" name="generos[]" value="Terror">
                     <label for="terror">Terror</label>
-                </div>
-                <div class="checkbox-item">
-                    <input type="checkbox" id="romance" name="generos[]" value="romance">
-                    <label for="romance">Romance</label>
-                </div>
-                <div class="checkbox-item">
-                    <input type="checkbox" id="aventura" name="generos[]" value="aventura">
-                    <label for="aventura">Aventura</label>
                 </div>
             </div>
         </div>
@@ -156,35 +157,46 @@ if (!isset($datos)) {
         <button type="submit">Buscar Libros</button>
     </form>
 
+    <?php if (!empty($errores)): ?>
+        <div class="errores">
+            <h3>Se han producido los siguientes errores:</h3>
+            <ul>
+                <?php foreach ($errores as $campo => $mensaje): ?>
+                    <li><?php echo htmlspecialchars($mensaje); ?></li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+    <?php endif; ?>
+
     <table>
         <thead>
-            <tr>
-                <th>Título</th>
-                <th>Autor</th>
-                <th>Copias Vendidas</th>
-                <th>Género</th>
-            </tr>
+            <?php
+            if (!empty($datos) && is_array($datos) && count($datos) > 0):
+                $headers = reset($datos); 
+                if (!empty($headers)):
+                    foreach (array_keys($headers) as $header):
+            ?>
+                        <th><?php echo htmlspecialchars($header); ?></th>
+            <?php
+                    endforeach;
+                endif;
+            endif;
+            ?>
         </thead>
         <tbody>
-        <?php if (!empty($datos)): ?>
-                <?php foreach ($datos as $libro): ?>
+            <?php if (!empty($datos) && is_array($datos)): ?>
+                <?php foreach ($datos as $linea): ?>
                     <tr>
-                        <td><?php echo htmlspecialchars($libro['Título']); ?></td>
-                        <td><?php echo htmlspecialchars($libro['Autor']); ?></td>
-                        <td><?php echo htmlspecialchars($libro['Copias Vendidas']); ?></td>
-                        <td><?php echo htmlspecialchars($libro['Género']); ?></td>
+                        <?php foreach ($linea as $value): ?>
+                            <td><?php echo htmlspecialchars($value); ?></td>
+                        <?php endforeach; ?>
                     </tr>
                 <?php endforeach; ?>
-        <?php else: ?>
-            <?php foreach ($datos as $dato): ?>
-                    <tr>
-                        <td><?php echo htmlspecialchars($libro['Título']); ?></td>
-                        <td><?php echo htmlspecialchars($libro['Autor']); ?></td>
-                        <td><?php echo htmlspecialchars($libro['Copias Vendidas']); ?></td>
-                        <td><?php echo htmlspecialchars($libro['Género']); ?></td>
-                    </tr>
-                <?php endforeach; ?>
-            <?php endif;?>
+            <?php else: ?>
+                <tr>
+                    <td colspan="4">No se encontraron libros.</td>
+                </tr>
+            <?php endif; ?>
         </tbody>
     </table>
 

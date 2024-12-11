@@ -1,30 +1,30 @@
 <?php
 /**
- * Ejercicio 2 - Desarrollo Web en Entorno Servidor
- * @author Luis Fernandez Vidal
+ * Función para cargar datos desde archivos CSV
+ * @param string $nombreArchivo Nombre del archivo CSV a leer
+ * @param array &$datos Array por referencia donde se guardarán los datos
+ * @return array|false Array de datos o false si falla
  */
-function cargarCSV(array &$datos, string $nombreArchivo): bool {
-        $r = fopen($nombreArchivo, 'r');
+function cargarCSV(string $nombreArchivo, array &$datos): array|false {
+    // Abrir archivo en modo lectura
+    $r = fopen($nombreArchivo, 'r');
 
-        if ($r === false) { // Es resource
-            return false;
-        }
-
+    if ($r !== false) { //Comprobamos que es resource
         $headers = null;
-
+        
+        // Leer linea por linea el archivo CSV
         while (($linea = fgetcsv($r)) !== false) {
             if (!$headers) {
                 $headers = $linea; // Cargar la primera fila como headers
-            } else {
-                $datos[] = array_combine($headers, $linea); // Combinar arrays
+                continue;
             }
+            // Combinar headers con valores para crear array asociativo
+            $datos[] = array_combine($headers, $linea);   
         }
         fclose($r);
-        return true;        
-} 
-    
-
-                  
-                
-
-
+    } else {
+        return false;
+    }   
+    return $datos;  
+      
+}

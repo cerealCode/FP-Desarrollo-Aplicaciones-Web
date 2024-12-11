@@ -1,62 +1,59 @@
-<?php
-/**
- * Ejercicio 3 - Desarrollo Web en Entorno Servidor
- * @author Luis Fernández Vidal
- */
-
+<?php 
 require_once 'b.php';
 
-// Inicializar variables
+// Variables iniciales
 $minCopias = null;
 $generos = [];
-$datos = [];
 $errores = [];
 
-// Lista de géneros válidos
-$generosValidos = ['fantasia', 'ciencia_ficcion', 'misterio', 'terror', 'romance', 'aventura'];
-
-// Procesar el formulario si se ha enviado
+// Procesar envío de formulario
+//Verifica que los datos se han enviado a traés del formulario se ha enviado via POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Validar copias mínimas
+    // Validar número de copias
     if (!empty($_POST['copias'])) {
+        //Valida que $minCopias es un número mayor a 0
         if (!is_numeric($_POST['copias'])) {
             $errores['copias'] = "El número de copias debe ser un valor numérico.";
         } elseif ($_POST['copias'] < 0) {
             $errores['copias'] = "El número de copias no puede ser negativo.";
         } else {
+            //Castea el numero introducido a integer
             $minCopias = (int)$_POST['copias'];
         }
     }
-    
-    // Validar géneros seleccionados
+
+    // Géneros aceptados para el filtrado
+    $generosValidos = ['Fantasía', 'Ciencia Ficción', 'Misterio', 'Terror'];
+
+    //Verifica que los datos se han enviado a traés del formulario se ha enviado via POST
     if (isset($_POST['generos'])) {
+        //Verifica que los datos se han recibido en un array
         if (!is_array($_POST['generos'])) {
             $errores['generos'] = "Formato de géneros inválido.";
         } else {
-            // Validar cada género seleccionado
+            //Recorre el array $
             foreach ($_POST['generos'] as $genero) {
                 if (!in_array($genero, $generosValidos)) {
                     $errores['generos'] = "Uno o más géneros seleccionados no son válidos.";
-                    break;
                 }
             }
+            //Si no se a producido nigún error $generos el array enviado desde el formulario
             if (!isset($errores['generos'])) {
-                $generos = array_map('strtolower', $_POST['generos']);
+                $generos = $_POST['generos'];
             }
         }
     }
 
-    // Si no hay errores, proceder con la búsqueda
+    // Si no hay errores, filtrar datos
     if (empty($errores)) {
         $datos = filtrarLibros($minCopias, $generos);
     }
 }
 
-// Si es la primera carga o hay errores, cargar todos los libros
-if ($_SERVER['REQUEST_METHOD'] !== 'POST' || !empty($errores)) {
+// Cargar todos los libros en la carga inicial
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     $datos = filtrarLibros();
 }
 
-// Incluir la página principal que mostrará los resultados
+// Incluir página principal para mostrar resultados
 include 'index.php';
-?>

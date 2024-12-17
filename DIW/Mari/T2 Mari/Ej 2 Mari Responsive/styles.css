@@ -1,0 +1,172 @@
+/* Definición de variables de color */
+:root {
+    --color-fondo-menu: #360555;
+    --color-texto-menu: white;
+    --color-hover-fondo: #FFAD01;
+    --color-hover-texto: #360555;
+}
+
+/* Estilos generales */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+}
+
+/* Cabecera con flex */
+.encabezado {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--color-fondo-menu);
+    color: var(--color-texto-menu);
+    padding: 20px;
+}
+
+.zona-navegacion {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.zona-navegacion .nav-opcion {
+    color: var(--color-texto-menu);
+    text-decoration: none;
+    margin: 0 15px;
+    transition: color 0.3s;
+}
+
+.zona-navegacion .nav-opcion:hover {
+    color: var(--color-hover-fondo);
+}
+
+/* Contenido con grid */
+.contenido {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+/* Zona de Publicidad con grid */
+.zona-publicidad {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: 
+        "titulo titulo"
+        "imagen descripcion"
+        "imagen boton";
+    gap: 15px;
+    align-items: center;
+}
+
+.titulo-publicidad {
+    grid-area: titulo;
+    text-align: center;
+    font-family: 'Oswald', sans-serif;
+    color: var(--color-fondo-menu);
+}
+
+.imagen-publicidad {
+    grid-area: imagen;
+    width: 50%;
+    height: 100%;
+}
+
+.descripcion-publicidad {
+    grid-area: descripcion;
+    text-align: center;
+    font-family: 'CustomFont', serif; /* Fuente local descargada */
+}
+
+.boton-accion {
+    grid-area: boton;
+    text-align: center;
+    background-color: var(--color-hover-fondo);
+    color: var(--color-hover-texto);
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.boton-accion:hover {
+    background-color: var(--color-fondo-menu);
+    color: var(--color-texto-menu);
+}
+
+/* Zona de Información con columnas */
+.zona-informacion p {
+    column-count: 3;
+    column-gap: 20px;
+    text-align: justify;
+}
+
+/* Zona de Monitores con flex vertical */
+.zona-monitores {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.monitor-tarjeta:nth-child(odd) {
+    background-color: #f4f4f4;
+}
+
+.monitor-tarjeta:nth-child(even) {
+    background-color: #e4e4e4;
+}
+
+.imagen-monitor {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.boton-monitor {
+    display: block;
+    text-align: center;
+    background-color: var(--color-hover-fondo);
+    color: var(--color-hover-texto);
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+/* Pie de página con flex */
+.pie-pagina {
+    display: flex;
+    justify-content: space-around;
+    background-color: var(--color-fondo-menu);
+    color: var(--color-texto-menu);
+    padding: 30px;
+}
+
+.datos-empresa, .redes-sociales, .newsletter {
+    flex: 1;
+    text-align: center;
+}
+
+.newsletter input {
+    padding: 8px;
+    margin-right: 10px;
+    border-radius: 4px;
+}
+
+.newsletter button {
+    background-color: var(--color-hover-fondo);
+    color: var(--color-hover-texto);
+    border: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+}

@@ -1,0 +1,132 @@
+/* Estilos generales */
+body {
+    font-family: Roboto;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+/* Identificación */
+#encabezado-sitio {
+    background-color: #1295c9;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 5px solid red;
+    
+}
+
+#logo-club {
+    width: 120px;
+    height: 100px;
+    margin-right: 20px;
+}
+
+/* Navegación */
+#menu-navegacion {
+    background-color: #d1d1d1;
+    padding: 10px;
+    text-align: center;
+    border: 5px solid green;
+}
+
+#menu-navegacion a {
+    color: white;
+    margin: 0 15px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Contenidos */
+.contenido-principal{
+    border: 5px solid purple;
+}
+.titulo-principal {
+    text-align: center;
+}
+
+.seccion-historia {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 40px;
+    width: 100%;
+
+}
+
+
+
+.imagen-derecha {
+    
+    text-align: center;
+    float: right;
+}
+
+.imagen-izquierda {
+    
+    text-align: center;
+    float: left;
+}
+
+
+.texto-izquierda {
+    width: 40%;
+    text-align: left; 
+    padding: 0 20px;
+    text-wrap: balance;
+    float: right;
+}
+
+
+.texto-derecha {
+    width: 40%;
+    text-align: left; 
+    padding: 0 20px;
+    text-wrap: balance;
+    float: right;
+}
+
+ 
+.imagen-derecha img {
+    max-width: 250px;
+    height: auto;
+    object-fit: cover;
+    float: right;
+}
+
+.imagen-izquierda img {
+    max-width: 250px;
+    height: auto;
+    object-fit: cover;
+    float: left;
+}
+
+/* Enlaces */
+#seccion-enlaces {
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+    border: 5px solid yellow;
+}
+
+.boton-enlace {
+    background-color: #1295c9;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    margin: 0 10px;
+    border-radius: 5px;
+}
+
+/* Pie de página */
+#pie-pagina {
+    background-color: #1295c9;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    position: relative; 
+}
+

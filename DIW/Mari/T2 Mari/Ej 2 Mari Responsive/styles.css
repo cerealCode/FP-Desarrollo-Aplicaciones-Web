@@ -21,17 +21,21 @@ body {
 /* Cabecera con flex */
 .encabezado {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: center;
     background-color: var(--color-fondo-menu);
     color: var(--color-texto-menu);
-    padding: 20px;
+}
+
+.encabezado img {
+    width: 20%;
 }
 
 .zona-navegacion {
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size: 20px;
 }
 
 .zona-navegacion .nav-opcion {
@@ -44,6 +48,11 @@ body {
 .zona-navegacion .nav-opcion:hover {
     color: var(--color-hover-fondo);
 }
+
+.login-icono {
+    font-size: 20px;
+}
+  
 
 /* Contenido con grid */
 .contenido {
@@ -169,4 +178,184 @@ body {
     padding: 8px 15px;
     border-radius: 4px;
     cursor: pointer;
+}
+
+@media screen and (max-width: 620px) {
+
+    html, body {
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+
+    .contenido {
+        width: 100%;
+        padding: 0 10px;
+        box-sizing: border-box;
+    }
+
+    /* Ensure images and other elements don't exceed screen width */
+    img, 
+    .imagen-publicidad, 
+    .imagen-monitor {
+        max-width: 100%;
+        height: auto;
+    }
+
+    /* Adjust grid and flex layouts */
+    .zona-publicidad {
+        grid-template-columns: 1fr;
+        grid-template-areas: 
+            "titulo"
+            "imagen"
+            "descripcion"
+            "boton";
+    }
+
+    .zona-monitores {
+        display: grid;
+        grid-template-columns: 1fr;
+        justify-items: center;
+    }
+
+    /* Ensure text doesn't overflow */
+    p, 
+    .descripcion-publicidad {
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+    }
+
+    /* Cabecera */
+    .encabezado {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+    }
+    /* Adjust logo dimensions */
+    .encabezado img {
+        width: 100px;
+        height: auto;
+        max-height: 80px;
+    }
+    /* Hide navigation and login for mobile */
+    .zona-navegacion, .login-icono {
+        display: none;
+    }
+
+    /* Menú hamburguesa */
+    .encabezado::after {
+        content: '☰';
+        color: white;
+        font-size: 24px;
+        cursor: pointer;
+    }
+
+    /* Contenido */
+    .contenido {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        padding: 10px;
+        width: 100%;
+    }
+
+    /* Publicidad */
+    .zona-publicidad {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-areas: 
+            "titulo"
+            "imagen"
+            "descripcion"
+            "boton";
+        gap: 10px;
+        text-align: center;
+    }
+
+    .titulo-publicidad {
+        grid-area: titulo;
+        font-size: 1.2rem;
+    }
+
+    .imagen-publicidad {
+        grid-area: imagen;
+        width: 100%;
+        max-width: 400px;
+        height: auto;
+        margin: 0 auto;
+        order: -1; /* Move image to top */
+    }
+
+    .descripcion-publicidad {
+        grid-area: descripcion;
+        text-align: justify;
+        padding: 0 10px;
+        font-size: 0.9rem;
+        line-height: 1.4;
+    }
+
+    .boton-accion {
+        grid-area: boton;
+        justify-self: center;
+        margin: 10px 0;
+    }
+
+    /* Zona de Información */
+    .zona-informacion h2 {
+        text-align: center;
+        font-size: 1.2rem;
+    }
+
+    .zona-informacion p {
+        column-count: 1;
+        column-gap: 0;
+        text-align: justify;
+        padding: 0 10px;
+        font-size: 0.9rem;
+        line-height: 1.4;
+    }
+
+     .zona-monitores {
+        display: grid;
+        grid-template-columns: repeat(4, 0.5fr);
+        gap: 20px;
+        width: 100%;
+        padding: 20px;
+    }
+
+    .monitor-tarjeta {
+        margin-bottom: 0;
+        padding: 10px;
+        background-color: #f4f4f4;
+        border-radius: 10px;
+    }
+
+    .imagen-monitor {
+        width: 80px;
+        height: 80px;
+    }
+
+    .boton-monitor {
+        margin-top: 5px;
+        font-size: 0.7rem;
+    }
+
+    /* Footer modificaciones */
+    .pie-pagina {
+        display: flex;
+        justify-content: space-around;
+        padding: 15px;
+        flex-wrap: wrap;
+    }
+
+    .datos-empresa, .redes-sociales {
+        flex: 1 1 100%;
+        text-align: center;
+        margin-bottom: 15px;
+    }
+
+    /* Remove newsletter section */
+    .newsletter {
+        display: none;
+    }
 }

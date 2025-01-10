@@ -1,0 +1,65 @@
+// Variables
+$primary-color: #280a47;
+$text-dark: #000000;
+$text-light: #FFFFFF;
+$bg-light: #FCFCFC;
+$bg-alt: #f3f3f3;
+
+// Font families
+$font-primary: "Roboto Flex", sans-serif;
+$font-headers: "Cabin";
+$font-content: "Noto Sans", sans-serif;
+
+body {
+    background-color: $bg-light;
+    color: $text-dark;
+}
+
+header {
+    display: flex;
+    gap: 80px;
+    justify-content: space-between;
+    background-color: $primary-color;
+    color: $text-light;
+    font-family: $font-primary;
+
+    h1 {
+        font-family: $font-headers;
+        font-size: 36px;
+        font-weight: 700;
+    }
+
+    p {
+        font-size: 18px;
+    }
+}
+
+main {
+    section {
+        font-family: $font-content;
+
+        &:nth-child(even) {
+            background-color: $bg-alt;
+        }
+
+        h1 {
+            font-family: $font-headers;
+            font-size: 28px;
+        }
+    }
+}
+
+footer {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+    background-color: $primary-color;
+    color: $text-light;
+    font-family: $font-primary;
+
+    h2 {
+        font-family: $font-headers;
+        font-size: 24px;
+        font-weight: 500;
+    }
+}

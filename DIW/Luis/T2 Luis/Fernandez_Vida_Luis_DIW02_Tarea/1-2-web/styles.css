@@ -1,0 +1,416 @@
+/* Definición de variables de color */
+/* TODO CREAR VARIABLES TEXTO */
+/* TODO CAMBIAR ORIENTACION SECIONES EN MOVIL */
+:root {
+    --color-fondo-menu: #1295c9;
+    --color-texto-menu: white;
+    --color-hover-fondo: #1295c9;
+    --color-hover-texto: #d1d1d1;
+}
+
+/* Estilos generales */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+}
+
+/* Cabecera con flex */
+.encabezado {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: var(--color-fondo-menu);
+    color: var(--color-texto-menu);
+}
+
+.encabezado img {
+    width: 20%;
+}
+
+.zona-navegacion {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 35px;
+}
+
+.zona-navegacion .nav-opcion {
+    color: var(--color-texto-menu);
+    text-decoration: none;
+    margin: 0 15px;
+    transition: color 0.3s;
+}
+
+.zona-navegacion .nav-opcion:hover {
+    color: var(--color-hover-texto);
+    text-decoration: underline
+}
+
+.login-icono {
+    font-size: 35px;
+    width: 20%;
+   
+}
+
+.login-icono a {
+    display: flex;
+    float: left;
+    margin-left: 60px; 
+}
+
+.login-icono img {
+    display: flex;
+    float: right;
+    margin-right: 60px; 
+}
+  
+
+/* Contenido con grid */
+.contenido {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-areas: 
+        "monitores publicidad"
+        "monitores publicidad"
+        "monitores publicidad"
+        "monitores informacion";
+    gap: 30px;
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+/* Zona de Publicidad con grid */
+.contenedor-publicidad {
+    grid-area: publicidad;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+}
+.zona-publicidad {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: 
+        "titulo imagen"
+        "descripcion imagen"
+        "boton imagen";
+    gap: 15px;
+    align-items: center;
+}
+
+.titulo-publicidad {
+    grid-area: titulo;
+    text-align: center;
+    font-family: 'Oswald', sans-serif;
+    color: var(--color-fondo-menu);
+}
+
+.imagen-publicidad {
+    grid-area: imagen;
+    justify-self: end;
+    width: 90%;
+    height: 100%;
+}
+
+.descripcion-publicidad {
+    grid-area: descripcion;
+    text-align: center;
+    font-family: 'CustomFont', serif; /* Fuente local descargada */
+}
+
+.boton-accion {
+    grid-area: boton;
+    text-align: center;
+    background-color: var(--color-hover-fondo);
+    color: var(--color-hover-texto);
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    font-weight: bold;
+}
+
+.boton-accion:hover {
+    background-color: var(--color-fondo-menu);
+    color: var(--color-texto-menu);
+}
+
+/* Zona de Información con columnas */
+.zona-informacion {
+    grid-area: informacion;
+    text-align: center;
+}
+.area-informacion h2 {
+    text-align: center;
+    color: var(--color-fondo-menu);
+}
+
+.zona-informacion p {
+    column-count: 3;
+    column-gap: 20px;
+    text-align: justify;
+}
+
+/* Zona de Monitores con flex vertical */
+
+.zona-monitores {
+    grid-area: monitores;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+    align-items: center;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+.titulo-monitor h2 {
+    grid-area: monitores;
+    text-align: center;
+    font-family: 'Oswald', sans-serif;
+    font-size: 30px;
+    color: var(--color-fondo-menu);
+}
+.monitor-tarjeta:nth-child(odd) {
+    background-color: #f4f4f4;
+}
+
+.monitor-tarjeta:nth-child(even) {
+    background-color: #e4e4e4;
+}
+
+.imagen-monitor {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.boton-monitor {
+    display: block;
+    text-align: center;
+    background-color: var(--color-hover-fondo);
+    color: var(--color-hover-texto);
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+/* Pie de página con flex */
+.pie-pagina {
+    display: flex;
+    justify-content: space-around;
+    background-color: var(--color-fondo-menu);
+    color: var(--color-texto-menu);
+    padding: 30px;
+}
+
+.datos-empresa, .redes-sociales, .newsletter {
+    flex: 1;
+    text-align: center;
+}
+
+.newsletter input {
+    padding: 8px;
+    margin-right: 10px;
+    border-radius: 4px;
+}
+
+.newsletter button {
+    background-color: var(--color-hover-fondo);
+    color: var(--color-texto-menu);
+    border: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    border: 2px solid #FFFFFF;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 620px) {
+
+    html, body {
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+
+    .contenido {
+        width: 100%;
+        padding: 0 10px;
+        box-sizing: border-box;
+    }
+
+    /* Ensure images and other elements don't exceed screen width */
+    img, 
+    .imagen-publicidad, 
+    .imagen-monitor {
+        max-width: 100%;
+        height: auto;
+    }
+
+    /* Adjust grid and flex layouts */
+    .zona-publicidad {
+        grid-template-columns: 1fr;
+        grid-template-areas: 
+            "titulo"
+            "imagen"
+            "descripcion"
+            "boton";
+    }
+
+    .zona-monitores {
+        display: grid;
+        grid-template-columns: 1fr;
+        justify-items: center;
+    }
+
+    /* Ensure text doesn't overflow */
+    p, 
+    .descripcion-publicidad {
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+    }
+
+    /* Cabecera */
+    .encabezado {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+    }
+    /* Adjust logo dimensions */
+    .encabezado img {
+        width: 100px;
+        height: auto;
+        max-height: 80px;
+    }
+    /* Hide navigation and login for mobile */
+    .zona-navegacion, .login-icono {
+        display: none;
+    }
+
+    /* Menú hamburguesa */
+    .encabezado::after {
+        content: '☰';
+        color: white;
+        font-size: 24px;
+        cursor: pointer;
+    }
+
+    /* Contenido */
+    .contenido {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        padding: 10px;
+        width: 100%;
+    }
+
+    /* Publicidad */
+    .zona-publicidad {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-areas: 
+            "titulo"
+            "imagen"
+            "descripcion"
+            "boton";
+        gap: 10px;
+        text-align: center;
+    }
+
+    .titulo-publicidad {
+        grid-area: titulo;
+        font-size: 1.2rem;
+    }
+
+    .imagen-publicidad {
+        grid-area: imagen;
+        width: 100%;
+        max-width: 400px;
+        height: auto;
+        margin: 0 auto;
+        order: -1; /* Move image to top */
+    }
+
+    .descripcion-publicidad {
+        grid-area: descripcion;
+        text-align: justify;
+        padding: 0 10px;
+        font-size: 0.9rem;
+        line-height: 1.4;
+    }
+
+    .boton-accion {
+        grid-area: boton;
+        justify-self: center;
+        margin: 10px 0;
+    }
+
+    /* Zona de Información */
+    .zona-informacion h2 {
+        text-align: center;
+        font-size: 1.2rem;
+    }
+
+    .zona-informacion p {
+        column-count: 1;
+        column-gap: 0;
+        text-align: justify;
+        padding: 0 10px;
+        font-size: 0.9rem;
+        line-height: 1.4;
+    }
+
+     .zona-monitores {
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+        width: 100%;
+        padding: 10px;
+    }
+
+    .zona-monitores h2 {
+        display: none;
+    }
+
+    .monitor-tarjeta {
+        margin-bottom: 0;
+        padding: 10px;
+        background-color: #f4f4f4;
+        border-radius: 10px;
+    }
+
+    .imagen-monitor {
+        width: 80px;
+        height: 80px;
+    }
+
+    .boton-monitor {
+        margin-top: 5px;
+        font-size: 0.7rem;
+    }
+
+    /* Footer modificaciones */
+    .pie-pagina {
+        display: flex;
+        justify-content: space-around;
+        padding: 15px;
+        flex-wrap: wrap;
+    }
+
+    .datos-empresa, .redes-sociales {
+        flex: 1 1 100%;
+        text-align: center;
+        margin-bottom: 15px;
+    }
+
+    /* Remove newsletter section */
+    .newsletter {
+        display: none;
+    }
+}

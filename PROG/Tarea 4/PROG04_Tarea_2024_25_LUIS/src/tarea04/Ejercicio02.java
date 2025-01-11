@@ -94,16 +94,19 @@ public class Ejercicio02 {
                 System.out.println("Introduce " + primeraFila.length + " elementos para la fila " + (i + 1));
                 fila = teclado.nextLine().trim();
                 
+                //Si la fila contiene caracteres no permitidos, paramos la ejecucion del programa con status 0 pq no es necesario aplicar niguna lógica despues
                 if (!filaValida) {
-                    System.out.println("Introduce una cadena de letras y números separados por una coma");
+                    System.out.println("Algunos de los caracteres introducidos no son válidos. Saliendo del programa...");
+                    System.exit(0);
                 }
                 
                 elementosFila = fila.split(",");
                 
                 // Verificamos que la fila tenga el número correcto de elementos
                 if (elementosFila.length != primeraFila.length) {
-                    System.out.println("Error: La fila debe tener " + primeraFila.length + " elementos");
-                    i--; // Decrementamos i para repetir la fila actual
+                    System.out.println("Error: La fila debe tener " + primeraFila.length + " elementos. Introduce una cadena correcta");
+                    //Si la longitud no es correcta, decrementamos el index para volver a pedir la entrada
+                    i--;
                 }
 
             } while (!filaValida);

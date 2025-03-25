@@ -1,0 +1,20 @@
+{
+    "name": "cerealcode/dwes04",
+    "description": "Tema 4 OOP PHP",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Cerealcode\\Dwes04\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "cerealCode",
+            "email": "fernandezvidalluis@gmail.com"
+        }
+    ],
+    "minimum-stability": "beta",
+    "require": {
+        "smarty/smarty": "^5.4"
+    }
+}
